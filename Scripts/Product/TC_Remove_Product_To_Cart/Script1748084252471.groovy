@@ -17,35 +17,20 @@ import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 import internal.GlobalVariable as GlobalVariable
 import org.openqa.selenium.Keys as Keys
 
-List<List> invalidLoginData = [['', GlobalVariable.PASSWORD, 'Epic sadface: Username is required'],
-	[GlobalVariable.USERNAME_STANDAR, '', 'Epic sadface: Password is required'],
-	['wrong_user', GlobalVariable.PASSWORD, 'Epic sadface: Username and password do not match any user in this service'],
-	[GlobalVariable.USERNAME_LOCKED, GlobalVariable.PASSWORD, 'Epic sadface: Sorry, this user has been locked out.']]
+List<String> products = [
+	'sauce-labs-backpack',
+	'sauce-labs-bike-light',
+	'sauce-labs-bolt-t-shirt',
+	'sauce-labs-fleece-jacket',
+	'sauce-labs-onesie',
+	'test.allthethings()-t-shirt-(red)'
+]
 
+CustomKeywords.'product.addToCart.addMultipleProducts'(products)
 
-for (List<String> data : invalidLoginData) {
-    String username = data[0]
+WebUI.click(findTestObject('Product Page/cartButton'))
 
-    String password = data[1]
+CustomKeywords.'product.removeFromCart.removeMultipleProducts'(products)
 
-    String expectedError = data[2]
-
-    WebUI.waitForElementPresent(findTestObject('Login Page/inputUsername'), 10)
-
-    WebUI.clearText(findTestObject('Login Page/inputUsername'), FailureHandling.STOP_ON_FAILURE)
-
-    WebUI.setText(findTestObject('Login Page/inputUsername'), username)
-
-    WebUI.clearText(findTestObject('Login Page/inputPassword'), FailureHandling.STOP_ON_FAILURE)
-
-    WebUI.setText(findTestObject('Login Page/inputPassword'), password)
-
-    WebUI.click(findTestObject('Login Page/buttonLogin'), FailureHandling.STOP_ON_FAILURE)
-
-    String actualError = WebUI.getText(findTestObject('Login Page/errorMessage'))
-
-    WebUI.refresh()
-
-    assert actualError.contains(expectedError)
-}
+WebUI.verifyElementNotPresent(findTestObject('Cart Page/inventoryName'), 5)
 

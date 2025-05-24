@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebElementEntity>
+   <description></description>
+   <name>dynamicRemoveButton</name>
+   <tag></tag>
+   <elementGuidId>53e3322a-4967-4895-af90-b68580023172</elementGuidId>
+   <selectorCollection>
+      <entry>
+         <key>BASIC</key>
+         <value>//button[@data-test='remove-${productId}']</value>
+      </entry>
+   </selectorCollection>
+   <selectorMethod>BASIC</selectorMethod>
+   <smartLocatorEnabled>false</smartLocatorEnabled>
+   <useRalativeImagePath>false</useRalativeImagePath>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath</name>
+      <type>Main</type>
+      <value>//button[@data-test='remove-${productId}']</value>
+      <webElementGuid>c629da89-3b3b-4ced-932a-266b5721417c</webElementGuid>
+   </webElementProperties>
+</WebElementEntity>

@@ -21,19 +21,11 @@ import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 import internal.GlobalVariable
 
 public class addToCart {
-	
-	/*
-	 *  	"sauce-labs-backpack",
-            "sauce-labs-bike-light",
-            "sauce-labs-bolt-t-shirt",
-            "sauce-labs-fleece-jacket",
-            "sauce-labs-onesie",
-            "test.allthethings()-t-shirt-(red)"
-	 */
 
 	private TestObject getAddToCartButton(String productId) {
-		TestObject to = findTestObject('Object Repository/DynamicAddToCartButton')
-		to.setSelectorValue("XPATH", "//button[@data-test='add-to-cart-${productId}']")
+		TestObject to = new TestObject()
+		to.addProperty("xpath", com.kms.katalon.core.testobject.ConditionType.EQUALS,
+				"//button[@data-test='add-to-cart-${productId}']")
 		return to
 	}
 
@@ -77,10 +69,10 @@ public class addToCart {
 	}
 
 	@Keyword
-	def MultipleProducts(List<String> productIds) {
+	def addMultipleProducts(List<String> productIds) {
 		for (String productId : productIds) {
-			WebUI.click(getAddToCartButton(productId))
-			WebUI.delay(1)
+			addProductToCart(productId)
 		}
 	}
+	
 }

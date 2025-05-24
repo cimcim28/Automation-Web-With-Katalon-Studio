@@ -27,10 +27,7 @@ class SauceDemoListener {
 	@BeforeTestCase
 	def beforeTestCase(TestCaseContext testCaseContext) {
 		println "[START] Test case: " + testCaseContext.getTestCaseId()
-		
 		WebUI.openBrowser(GlobalVariable.URL)
-	
-		
 		WebUI.waitForElementPresent(findTestObject('Login Page/inputUsername'), 0)
 		WebUI.setText(findTestObject('Login Page/inputUsername'), GlobalVariable.USERNAME_STANDAR)
 		WebUI.setText(findTestObject('Login Page/inputPassword'), GlobalVariable.PASSWORD)
