@@ -13,8 +13,8 @@ import com.kms.katalon.core.webservice.keyword.WSBuiltInKeywords as WS
 import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 import com.kms.katalon.core.mobile.keyword.MobileBuiltInKeywords as Mobile
 
-import internal.GlobalVariable as GlobalVariable
-
+import internal.GlobalVariable
+import org.openqa.selenium.chrome.ChromeOptions
 import com.kms.katalon.core.annotation.BeforeTestCase
 import com.kms.katalon.core.annotation.BeforeTestSuite
 import com.kms.katalon.core.annotation.AfterTestCase
@@ -27,8 +27,15 @@ class SauceDemoListener {
 	@BeforeTestCase
 	def beforeTestCase(TestCaseContext testCaseContext) {
 		println "[START] Test case: " + testCaseContext.getTestCaseId()
+		
 		WebUI.openBrowser(GlobalVariable.URL)
-		WebUI.maximizeWindow()
+	
+		
+		WebUI.waitForElementPresent(findTestObject('Login Page/inputUsername'), 0)
+		WebUI.setText(findTestObject('Login Page/inputUsername'), GlobalVariable.USERNAME_STANDAR)
+		WebUI.setText(findTestObject('Login Page/inputPassword'), GlobalVariable.PASSWORD)
+		WebUI.click(findTestObject('Login Page/buttonLogin'), FailureHandling.STOP_ON_FAILURE)
+		WebUI.verifyElementText(findTestObject('Login Page/labelProduct'), 'Products')
 		
 	}
 

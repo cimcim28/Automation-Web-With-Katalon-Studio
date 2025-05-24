@@ -17,12 +17,33 @@ import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 import internal.GlobalVariable as GlobalVariable
 import org.openqa.selenium.Keys as Keys
 
-WebUI.waitForElementPresent(findTestObject('Login Page/inputUsername'), 0)
+List<String> products = ['sauce-labs-backpack', 'sauce-labs-bike-light', 'sauce-labs-bolt-t-shirt', 'sauce-labs-fleece-jacket']
 
-WebUI.setText(findTestObject('Login Page/inputUsername'), GlobalVariable.USERNAME_STANDAR)
+for (String product : products) {
+    CustomKeywords.'product.addToCart.addProductToCart'(product)
+}
 
-WebUI.setText(findTestObject('Login Page/inputPassword'), GlobalVariable.PASSWORD)
+WebUI.click(findTestObject('Product Page/cartButton'))
 
-WebUI.click(findTestObject('Login Page/buttonLogin'), FailureHandling.STOP_ON_FAILURE)
+WebUI.scrollToElement(findTestObject('Product Page/checkoutButton'), 0)
 
-WebUI.verifyElementText(findTestObject('Login Page/labelProduct'), 'Products')
+WebUI.waitForElementPresent(findTestObject('Product Page/checkoutButton'), 0)
+
+WebUI.click(findTestObject('Product Page/checkoutButton'), FailureHandling.STOP_ON_FAILURE)
+
+WebUI.waitForElementPresent(findTestObject('Checkout Page/inputFirstName'), 0)
+
+WebUI.setText(findTestObject('Checkout Page/inputFirstName'), 'Jhon')
+
+WebUI.setText(findTestObject('Checkout Page/inputLastName'), 'Doe')
+
+WebUI.setText(findTestObject('Checkout Page/inputPostalCode'), '112233')
+
+WebUI.scrollToElement(findTestObject('Checkout Page/continueButton'), 0)
+
+WebUI.click(findTestObject('Checkout Page/continueButton'), FailureHandling.STOP_ON_FAILURE)
+
+WebUI.click(findTestObject('Checkout Page/finishButton'), FailureHandling.STOP_ON_FAILURE)
+
+WebUI.verifyMatch(WebUI.getText(findTestObject('Checkout Page/successMessage')), 'Thank you for your order!', false)
+

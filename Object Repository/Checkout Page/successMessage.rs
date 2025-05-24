@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebElementEntity>
+   <description></description>
+   <name>successMessage</name>
+   <tag></tag>
+   <elementGuidId>c7be9364-d80c-4048-9588-8f555ac98fd7</elementGuidId>
+   <selectorCollection>
+      <entry>
+         <key>BASIC</key>
+         <value>//h2[@data-test=&quot;complete-header&quot;]</value>
+      </entry>
+   </selectorCollection>
+   <selectorMethod>BASIC</selectorMethod>
+   <smartLocatorEnabled>false</smartLocatorEnabled>
+   <useRalativeImagePath>false</useRalativeImagePath>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath</name>
+      <type>Main</type>
+      <value>//h2[@data-test=&quot;complete-header&quot;]</value>
+      <webElementGuid>53743888-27d3-4761-a853-370d644ad78f</webElementGuid>
+   </webElementProperties>
+</WebElementEntity>

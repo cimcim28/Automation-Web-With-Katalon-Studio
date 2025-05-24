@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebElementEntity>
+   <description></description>
+   <name>dynamicAddToCartButton</name>
+   <tag></tag>
+   <elementGuidId>5650a0e6-25cb-4f01-96e0-4c0c1e66de88</elementGuidId>
+   <selectorCollection>
+      <entry>
+         <key>BASIC</key>
+         <value>//button[@data-test='add-to-cart-${productId}']</value>
+      </entry>
+   </selectorCollection>
+   <selectorMethod>BASIC</selectorMethod>
+   <smartLocatorEnabled>false</smartLocatorEnabled>
+   <useRalativeImagePath>false</useRalativeImagePath>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath</name>
+      <type>Main</type>
+      <value>//button[@data-test='add-to-cart-${productId}']</value>
+      <webElementGuid>8cc85f6c-a5bd-40da-aa38-c2a5a7905789</webElementGuid>
+   </webElementProperties>
+</WebElementEntity>

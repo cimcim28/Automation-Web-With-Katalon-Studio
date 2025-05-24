@@ -17,12 +17,25 @@ import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 import internal.GlobalVariable as GlobalVariable
 import org.openqa.selenium.Keys as Keys
 
-WebUI.waitForElementPresent(findTestObject('Login Page/inputUsername'), 0)
+List<List> dataCart = [['sauce-labs-bike-light', 'Sauce Labs Bike Light'], ['sauce-labs-backpack', 'Sauce Labs Backpack']]
 
-WebUI.setText(findTestObject('Login Page/inputUsername'), GlobalVariable.USERNAME_STANDAR)
+for (List item : dataCart) {
+    String productId = item[0]
 
-WebUI.setText(findTestObject('Login Page/inputPassword'), GlobalVariable.PASSWORD)
+    CustomKeywords.'product.addToCart.addProductToCart'(productId)
+}
 
-WebUI.click(findTestObject('Login Page/buttonLogin'), FailureHandling.STOP_ON_FAILURE)
+WebUI.click(findTestObject('Product Page/cartButton'))
 
-WebUI.verifyElementText(findTestObject('Login Page/labelProduct'), 'Products')
+for (List item : dataCart) {
+    String expectedName = item[1]
+
+    TestObject cartItem = new TestObject()
+
+    cartItem.addProperty('xpath', com.kms.katalon.core.testobject.ConditionType.EQUALS, "//div[@data-test='inventory-item-name' and text()='$expectedName']")
+
+    WebUI.verifyElementPresent(cartItem, 5)
+}
+
+WebUI.delay(5)
+
