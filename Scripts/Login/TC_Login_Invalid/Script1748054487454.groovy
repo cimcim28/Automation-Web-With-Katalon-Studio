@@ -17,11 +17,13 @@ import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 import internal.GlobalVariable as GlobalVariable
 import org.openqa.selenium.Keys as Keys
 
-WebUI.acceptAlert()
+WebUI.waitForElementPresent(findTestObject('Login Page/inputUsername'), 0)
 
-WebUI.acceptAlert()
+WebUI.setText(findTestObject('Login Page/inputUsername'), GlobalVariable.USERNAME_STANDAR)
 
-WebUI.acceptAlert()
+WebUI.setText(findTestObject('Login Page/inputPassword'), GlobalVariable.PASSWORD)
 
-WebUI.acceptAlert()
+WebUI.click(findTestObject('Login Page/buttonLogin'), FailureHandling.STOP_ON_FAILURE)
+
+WebUI.verifyElementText(findTestObject('Login Page/labelProduct'), 'Products')
 
