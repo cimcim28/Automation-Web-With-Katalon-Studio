@@ -17,13 +17,34 @@ import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 import internal.GlobalVariable as GlobalVariable
 import org.openqa.selenium.Keys as Keys
 
-WebUI.waitForElementPresent(findTestObject('Login Page/inputUsername'), 0)
+List<List> invalidLoginData = [['', GlobalVariable.PASSWORD, 'Epic sadface: Username is required'], [GlobalVariable.USERNAME_STANDAR
+        , '', 'Epic sadface: Password is required'], ['wrong_user', GlobalVariable.PASSWORD, 'Epic sadface: Username and password do not match any user in this service']
+    , [GlobalVariable.USERNAME_LOCKED, GlobalVariable.PASSWORD, 'Epic sadface: Sorry, this user has been locked out.']]
 
-WebUI.setText(findTestObject('Login Page/inputUsername'), GlobalVariable.USERNAME_STANDAR)
 
-WebUI.setText(findTestObject('Login Page/inputPassword'), GlobalVariable.PASSWORD)
+for (List<String> data : invalidLoginData) {
+    String username = data[0]
 
-WebUI.click(findTestObject('Login Page/buttonLogin'), FailureHandling.STOP_ON_FAILURE)
+    String password = data[1]
 
-WebUI.verifyElementText(findTestObject('Login Page/labelProduct'), 'Products')
+    String expectedError = data[2]
+
+    WebUI.waitForElementPresent(findTestObject('Login Page/inputUsername'), 10)
+
+    WebUI.clearText(findTestObject('Login Page/inputUsername'), FailureHandling.STOP_ON_FAILURE)
+
+    WebUI.setText(findTestObject('Login Page/inputUsername'), username)
+
+    WebUI.clearText(findTestObject('Login Page/inputPassword'), FailureHandling.STOP_ON_FAILURE)
+
+    WebUI.setText(findTestObject('Login Page/inputPassword'), password)
+
+    WebUI.click(findTestObject('Login Page/buttonLogin'), FailureHandling.STOP_ON_FAILURE)
+
+    String actualError = WebUI.getText(findTestObject('Login Page/errorMessage'))
+
+    WebUI.refresh()
+
+    assert actualError.contains(expectedError)
+}
 
