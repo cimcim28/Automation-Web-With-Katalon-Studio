@@ -5,30 +5,6 @@ This project demonstrates login, product interaction, cart validation, and check
 
 ---
 
-## 📁 Project Structure
-
-├── Test Cases/
-│ ├── Login/
-│ │ └── TC_Login_Valid
-│ │ └── TC_Login_Invalid
-│ ├── Product/
-│ │ └── TC_Add_Product_To_Cart
-│ │ └── TC_Checkout_Process
-│
-├── Object Repository/
-│ ├── LoginPage/
-│ ├── ProductPage/
-│ └── CheckoutPage/
-│
-├── Test Listeners/
-│ └── SauceDemoListener.groovy
-│
-├── Reports/
-│ └── (Generated after test run)
-
-
----
-
 ## ▶️ How to Run the Tests
 
 1. **Open Katalon Studio**  
